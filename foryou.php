@@ -1,11 +1,20 @@
+<head>
+    <style>
+        table, th, td {
+          border: 1px solid;
+          border-collapse: collapse;
+        }
+    </style>
+</head>
 
-<h1>MY LIBRARY FOR YOU PAGE</h1>
+
 
 <?php
-    /*
-     methodo serialize cookie by Haseeb Saleemi.
-     */
-    include "connection_library.php";
+session_start();
+include "connection_library.php";
+
+if($_SESSION){
+    <h1>MY LIBRARY FOR YOU PAGE</h1>
 
     if(isset($_COOKIE['library_preferred_genre'])){
         $cookie_name='library_preferred_genre';
@@ -83,6 +92,6 @@
     }
 
     echo "</br></br><a href='homepage.php'> </a>";
-
-
+}else
+    Header('Location: index.php');
 ?>
