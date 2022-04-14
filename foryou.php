@@ -7,8 +7,8 @@
      */
     include "connection_library.php";
 
-    if(isset($_COOKIE['library_prefered_genre'])){
-        $cookie_name='library_preffered_genre';
+    if(isset($_COOKIE['library_preferred_genre'])){
+        $cookie_name='library_preferred_genre';
         $preferences=unserialize($_COOKIE[$cookie_name]);
 
         function quote($str){
@@ -17,21 +17,12 @@
 
         $preferencesArray=implode(",", array_map("quote",$preferences));
 
-        //$preferencesArray=implode(",", $preferences);
-
-print_r($preferencesArray);
 
         $query="
             SELECT *
             FROM libri
             WHERE genere IN ($preferencesArray)
         ";
-
-print_r($query);
-
-        /*foreach($preferences as $preference){
-            $query+="genre=$preference OR ";
-        }*/
 
         $query=substr($query, 0, -3);
 
@@ -83,16 +74,15 @@ print_r($query);
 
             echo "</table>";
         }else{
-            echo "No books with currently set preferences!";
+            echo "No books found with currently set preferences!";
         }
 
     }else{
-
-
-        echo "<a href='set_preference_.php'You dont have any preference yet, click here to set</a>";
+        echo "</br><a href='set_preference.php'You dont have any preference yet, click here to set</a>";
         //echo "</br><a href='homepage.php'You dont have any preference yet, click here to set</a>";
     }
 
+    echo "</br></br><a href='homepage.php'> </a>";
 
 
 ?>

@@ -9,34 +9,10 @@
         GROUP BY CODICE_ISBN
         ORDER BY titolo, CODICE_ISBN
     ";
-    $queryUsers="
-        SELECT CODICE_LETTORE, nome, cognome, codice_fiscale 
-        FROM lettori
-        ORDER BY cognome, nome, codice_fiscale
-    ";
 
     $resBooks=$conn->query($queryBooks);
-    $resUsers=$conn->query($queryUsers);
-
 
     echo "<form action='lend_book.php' method='post'>";
-
-        //
-        echo "<label for='id_user'>User: </label>";
-        echo "<select name='id_user' id='id_user' required>";
-            echo "<option disabled>Surname; Name; TAX ID</option>";
-            while($row=$resUsers->fetch_assoc()){
-                $id=$row['CODICE_LETTORE'];
-                $nome=$row['nome'];
-                $cognome=$row['cognome'];
-                $cf=$row['codice_fiscale'];
-
-                echo "<option value='$id'>";
-                    echo $cognome.";   ".$nome.";   ".$cf;
-                echo "</option>";
-            }
-        echo "</select>";
-        echo "</br>";
 
         echo "<label for='id_book'>Book: </label>";
         echo "<select name='id_book' id='id_book' required>";
@@ -61,5 +37,5 @@
         echo "<input type='submit'>";
     echo "</form>";
     
-    echo "</br></br><a href='index.php'>HOME</a>";
+    echo "</br></br><a href='homepage.php'>HOME</a>";
 ?>

@@ -8,19 +8,19 @@
         $pwd=$_POST['password'];
 
         $query="
-            SELECT email, password
+            SELECT CODICE_LETTORE, email, password
             FROM lettori
             WHERE email='$email' and password='$pwd'
         ";
 
         $result=$conn->query($query);
 
-        if($result->num_rows >0){
-
+        if($user=$result->fetch_assoc()){
+            $_SESSION['userid']=$user['CODICE_LETTORE'];
 
             header("Location: homepage.php");
         }else{
-            echo "<a href='index.php'> Password and username unmatch... Check your typo and CLICK to try again! </a>";
+            echo "<a href='index.php'> Password and username dont't match... Check your typo and CLICK to try again! </a>";
         }
 
     }else{
