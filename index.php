@@ -37,5 +37,7 @@
         ";
 
     }
+
+    echo "</br></br><a href='user_registration.php'>Not a user yet? Click here to register!</a>"
 ?>
 
