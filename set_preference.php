@@ -5,7 +5,7 @@ if($_POST){
     $tmpstr=implode(" ",$_POST['genre']);
 
     //set cookie
-    $cookie_name="library_preffered_genre";
+    $cookie_name="library_preferred_genre";
     $cookie_value=explode(" ",$tmpstr);
 
     setcookie($cookie_name, serialize($cookie_value), time()+(86400), '/');
