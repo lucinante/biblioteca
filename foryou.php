@@ -7,14 +7,13 @@
     </style>
 </head>
 
-
-
 <?php
 session_start();
-include "connection_library.php";
+
 
 if($_SESSION){
-    <h1>MY LIBRARY FOR YOU PAGE</h1>
+    include "connection_library.php";
+    echo "<h1>MY LIBRARY FOR YOU PAGE</h1>";
 
     if(isset($_COOKIE['library_preferred_genre'])){
         $cookie_name='library_preferred_genre';
@@ -80,18 +79,19 @@ if($_SESSION){
 
                 echo "<tr>";
             }
-
             echo "</table>";
+
         }else{
             echo "No books found with currently set preferences!";
         }
 
     }else{
-        echo "</br><a href='set_preference.php'You dont have any preference yet, click here to set</a>";
+        echo "</br><a href='set_preference.php'>You dont have any preference yet, click here to set</a>";
         //echo "</br><a href='homepage.php'You dont have any preference yet, click here to set</a>";
     }
 
-    echo "</br></br><a href='homepage.php'> </a>";
+    echo "</br></br><a href='homepage.php'>homepage</a>";
 }else
     Header('Location: index.php');
+
 ?>

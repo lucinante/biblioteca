@@ -19,10 +19,10 @@
             echo "failed: ".$conn->error;
         }else{
             echo "prestito inserita...</br>";
-            echo "<a href='book_loan.php'>premi qua per inserire un'altra!</a></br>";
+            echo "<a href='../book_loan.php'>premi qua per inserire un'altra!</a></br>";
         }
 
-        echo "</br></br><a href='homepage.php'>HOME</a>";
+        echo "</br></br><a href='../homepage.php'>HOME</a>";
     }else
         Header("Location: index.php");
 ?>
