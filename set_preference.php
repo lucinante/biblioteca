@@ -1,8 +1,10 @@
 <?php
 session_start();
-include "connection_library.php";
 
 if($_SESSION){
+    include "connection_library.php";
+    echo "<h1>MY LIBRARY SET GENRE PREFERENCE</h1>";
+
     if($_POST){
         $tmpstr=implode(" ",$_POST['genre']);
 
@@ -13,16 +15,13 @@ if($_SESSION){
         setcookie($cookie_name, serialize($cookie_value), time()+(86400), '/');
 
 
-        if(isset($_COOKIE[$cookie_name]))
+        //if(isset($_COOKIE[$cookie_name]))
             echo "preferences saved, try looking at the section <a href='foryou.php'>for you</a>!";
-        else
-            echo "preferences not set, operation failed!";
+        //else
+       //     echo "preferences not set, operation failed!";
 
 
-    }else{
-        //ask for cookie
-        echo "<h1>MY LIBRARY SET GENRE PREFERENCE</h1>";
-
+    }else{      //ask for preferences
         $query="
             SELECT DISTINCT genere
             FROM libri
