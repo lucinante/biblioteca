@@ -33,11 +33,16 @@ DA MODIFICARE LA QUERY CHE CERCA TUTTI I LIBRI PRESENTI, VERIRFICANDO CHE TUTTE 
 
         }else {
             //cerco libri non ancora prestati e la loro quantità
+            //logica: SELEZIONA IL LIBRO SE NON E' MAI STATO PRESTATO OPPURE SE E' GIA' STATO RESTITUITO
             $queryBooks = "
             SELECT CODICE_LIBRO, titolo, CODICE_ISBN, COUNT(*) as qta_presente
             FROM libri LEFT JOIN prestiti ON libri.CODICE_LIBRO=prestiti.ID_LIBRO
             WHERE prestiti.ID_LIBRO IS null 
-                OR prestiti.data_restituzione IS NOT null
+                OR (
+                    SELECT COUNT(*)
+                   	FROM prestiti
+                    WHERE data_restituzione IS NULL
+                   )=0
             GROUP BY CODICE_ISBN
             ORDER BY titolo, CODICE_ISBN
         ";
